@@ -13,7 +13,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const token = window.sessionStorage.getItem('token')
   if (token === null && to.path !== '/login') {
-    next('/login')
+    return next('/login')
   }
   next()
 })
