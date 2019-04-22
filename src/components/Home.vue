@@ -6,7 +6,7 @@
         <span>电商后台管理系统</span>
       </div>
       <el-row>
-        <el-button type="info">退出</el-button>
+        <el-button type="info" @click="logout">退出</el-button>
       </el-row>
     </el-header>
     <el-container>
@@ -33,16 +33,17 @@
               <span>{{ item.authName }}</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item
-                :index="k+'-'+item2.id"
-                v-for="item2 in item.children"
-                :key="item2.id"
-              ><i class="el-icon-menu"></i>{{ item2.authName }}</el-menu-item>
+              <el-menu-item :index="k+'-'+item2.id" v-for="item2 in item.children" :key="item2.id">
+                <i class="el-icon-menu"></i>
+                {{ item2.authName }}
+              </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -67,6 +68,22 @@ export default {
         return this.$message.error(dt.meta.msg)
       }
       this.menuList = dt.data
+    },
+    logout() {
+      this.$confirm('是否退出系统?', '退出', {
+        confirmButtonText: '是的！',
+        cancelButtonText: '再想想...',
+        type: 'info'
+      })
+        .then(() => {
+          this.$message({
+            type: 'success',
+            message: '退出成功!'
+          })
+          window.sessionStorage.removeItem("token")
+          this.$router.push("/login")
+        })
+        .catch(() => {})
     }
   }
 }
