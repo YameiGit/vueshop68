@@ -1,6 +1,6 @@
 <template >
   <div>
-    <h1>Welconme:Vue-shop-project</h1>
+    <h1>Users</h1>
   </div>
 </template>
 

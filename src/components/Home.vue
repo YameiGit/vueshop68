@@ -21,6 +21,7 @@
           :collapse="asideFlag"
           :collapse-transition="false"
           :unique-opened="true"
+          :router="true"
         >
           <el-submenu
             :index="item.id.toString()"
@@ -33,7 +34,8 @@
               <span>{{ item.authName }}</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item :index="k+'-'+item2.id" v-for="item2 in item.children" :key="item2.id">
+              <!-- <el-menu-item :index="k+'-'+item2.id" v-for="item2 in item.children" :key="item2.id"> -->
+              <el-menu-item :index="item.path" v-for="item2 in item.children" :key="item2.id">
                 <i class="el-icon-menu"></i>
                 {{ item2.authName }}
               </el-menu-item>
@@ -80,8 +82,8 @@ export default {
             type: 'success',
             message: '退出成功!'
           })
-          window.sessionStorage.removeItem("token")
-          this.$router.push("/login")
+          window.sessionStorage.removeItem('token')
+          this.$router.push('/login')
         })
         .catch(() => {})
     }
@@ -105,6 +107,7 @@ export default {
         width: 50px;
         height: 50px;
         margin-right: 10px;
+        user-select: none;
       }
       span {
         font-size: 22px;
