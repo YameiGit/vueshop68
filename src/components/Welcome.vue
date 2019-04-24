@@ -1,12 +1,9 @@
-<template >
-  <div>
-    <h1>Welconme:Vue-shop-project</h1>
-  </div>
+<template>
+    <div>Welcome to shandong</div>
 </template>
-
 <script>
-export default {}
+export default {
+}
 </script>
-
-<style lang = 'less'>
+<style lang="less" scoped>
 </style>
