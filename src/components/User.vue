@@ -8,12 +8,7 @@
     </el-breadcrumb>
     <!--卡片区-->
     <el-card class="box-card">
-      <el-dialog
-        title="修改用户"
-        :visible.sync="editDialogVisible"
-        width="50%"
-        @close="editDialogClose"
-      >
+      <el-dialog title="修改用户" :visible.sync="editDialogVisible" width="50%">
         <el-form :rules="editUserRules" ref="editUserRef" :model="editUser" label-width="80px">
           <el-form-item label="用户名" prop="username">
             <el-input v-model="editUser.username" :disabled="true"></el-input>
@@ -138,7 +133,6 @@ export default {
   },
   methods: {
     xiugai() {
-      // 校验表单
       this.$refs.editUserRef.validate(async valid => {
         if (valid === true) {
           // 校验成功处理， 收集数据存储入库
@@ -174,7 +168,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       })
-        .then(async () => {
+        .then(async() => {
           // axios调用api删除数据
           const { data: dt } = await this.$http.delete('users/' + id)
           if (dt.meta.status !== 200) {
@@ -226,6 +220,7 @@ export default {
       this.tot = dt.data.total
       this.userList = dt.data.users // 把获取好的用户列表数据存储给userList成员
     }
+    // editDialogClose(){}
   },
   data() {
     var checkMobile = (rule, value, callback) => {
