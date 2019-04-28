@@ -8,15 +8,6 @@ import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
 axios.defaults.baseURL = 'http://127.0.0.1:11333/api/private/v1/'
-<<<<<<< HEAD
-axios.interceptors.request.use(function(config) {
-  var token = window.sessionStorage.getItem('token')
-  config.headers.Authorization = token
-  return config
-}, function(error) {
-  return Promise.reject(error)
-})
-=======
 axios.interceptors.request.use(
   function(config) {
     console.dir(config)
@@ -31,7 +22,6 @@ axios.interceptors.request.use(
     return Promise.reject(error)
   }
 )
->>>>>>> home
 Vue.prototype.$http = axios
 
 // Vue.config.productionTip = false
